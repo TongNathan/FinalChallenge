@@ -1,4 +1,4 @@
-  <h1>Basketball Team</h1>
+  <h1>Basketball Team App Prototype</h1>
 
   <div class="postForm" *ngIf="loggedOut">
     <h3 style="font-weight: bold;">Please Login/Register to Continue:</h3>
@@ -29,25 +29,25 @@
       <input type="text" class="form-control" id="venue" name="venue" placeholder="Enter a Venue" [(ngModel)]="venueValue"><br><br>
   
       <input type="button" value="Submit Game" (click)="createGame();">
-    </div><br><br>
+    </div>
 
-    <h3>Current/Upcoming Games</h3>
+    <h3>Current/Upcoming Games:</h3>
     <div *ngFor="let game of games | async">
-      <li *ngIf="checkIfNewGame(game.date)">
+      <div *ngIf="checkIfNewGame(game.date)">
         {{game.date}} {{game.time}} at {{game.venue}}
         <input type="button" class="btn btn-primary" value="Delete"
           (click)="deleteGame(game.time, game.date, game.venue);"><br>
-      </li>
-      <br>
-    </div><br>
+      </div>
+      -----------------------------------------------------------
+    </div>
 
     <h3>Past Games:</h3>
     <div *ngFor="let game of games | async">
-      <li *ngIf="checkIfOldGame(game.date)">
+      <div *ngIf="checkIfOldGame(game.date)">
         {{game.date}} {{game.time}} at {{game.venue}}
         <input type="button" class="btn btn-primary" value="Delete"
           (click)="deleteGame(game.time, game.date, game.venue);"><br>
         <app-payment [time]="game.time" [date]="game.date" [venue]="game.venue"></app-payment>
-      </li>
+      </div>
     </div><br>
 
