@@ -6,9 +6,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent {
 
-  @Input("payment-card") game;
+export class PaymentComponent {
   @Input("time") time;
   @Input("date") date;
   @Input("venue") venue;
@@ -18,36 +17,27 @@ export class PaymentComponent {
   public userRef;
   public userInfo;
   public num;
-  public paymentValue;
 
   constructor(
     public db: AngularFireDatabase
   ){}
 
-  deleteGame(time: string, date: string, venue: string) {
-    const gameID = time + date + venue;
-    this.db.list('games/' + gameID).remove()
-  }
-
-  enterPayment(time: string, date: string, venue: string){
+  enterPayment(time: string, date: string, venue: string, payment: number, teammember: string){
     const gameID = time + date + venue;
     const ref = this.db.list('games/');
     const memberRef = this.db.list('teammembers/');
-
     ref.update(gameID,
       {
         teamMember: this.teamMemberValue,
-        paidAmount: this.paymentValue
+        paidAmount: payment
       }
     );
-
     memberRef.update(this.teamMemberValue,
       {
         teamMemberName: this.teamMemberValue,
       }
     );
-    
-    this.userRef = this.db.list('/teammembers', ref => ref.equalTo(this.teamMemberValue).orderByKey())
+    this.userRef = this.db.list('/teammembers', ref => ref.equalTo(teammember).orderByKey())
     this.userRef.snapshotChanges(['child_added'])
     .subscribe(actions => {
       actions.forEach(action => {
@@ -63,7 +53,7 @@ export class PaymentComponent {
         memberRef.update(this.teamMemberValue,
           {
             teamMemberName: this.teamMemberValue,
-            totalPaid: this.num + this.paymentValue
+            totalPaid: this.num + payment
           }
         );
       });

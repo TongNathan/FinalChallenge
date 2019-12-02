@@ -8,17 +8,15 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent {
 
-  title = 'challengetest';
   games: Observable<any[]>;
   teamMembers: Observable<any[]>;
   emailValue: string = '';
   passwordValue: string = '';
   currentDate = new Date();
   teamMemberValue: string = '';
-
+  otherDate: string = '02';
 
   public timeValue;
   public dateValue;
@@ -57,8 +55,9 @@ export class AppComponent {
   checkIfNewGame(date) {
     date = date.replace('-', '');
     date = date.replace('-', '');
+
     let currentMonth = this.currentDate.getMonth() + 1;
-    let dateString = this.currentDate.getFullYear() + '' + currentMonth + '' + this.currentDate.getDate();
+    let dateString = this.currentDate.getFullYear() + '' + currentMonth + '' + this.otherDate;
     let currentDate = +dateString;
     if (currentDate <= date) {
       return true;
@@ -71,8 +70,9 @@ export class AppComponent {
   checkIfOldGame(date) {
     date = date.replace('-', '');
     date = date.replace('-', '');
+
     let currentMonth = this.currentDate.getMonth() + 1;
-    let dateString = this.currentDate.getFullYear() + '' + currentMonth + '' + this.currentDate.getDate();
+    let dateString = this.currentDate.getFullYear() + '' + currentMonth + '' + this.otherDate;
     let currentDate = +dateString;
     if (currentDate > date) {
       return true;
@@ -116,7 +116,7 @@ export class AppComponent {
             );
           }
           else {
-            console.log("User is not a admin")
+            console.log("Not admin");
           }
         });
       })
@@ -133,7 +133,7 @@ export class AppComponent {
       return "Paid by " + teammember + ". Amount paid: $" + paidamount;
     }
     else {
-      return "Currently unpaid, please pay";
+      return "Currently unpaid.";
     }
   }
 }
