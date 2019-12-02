@@ -38,21 +38,19 @@
         <input type="button" class="btn btn-primary" value="Delete"
           (click)="deleteGame(game.time, game.date, game.venue);"><br>
       </li>
-    </div><br>
-
-    <h3>Past Games:</h3>
-    <div *ngFor="let game of games | async">
-      <li *ngIf="checkIfOldGame(game.date)">
-        {{game.date}} {{game.time}} at {{game.venue}}
-        <input type="button" class="btn btn-primary" value="Delete"
-          (click)="deleteGame(game.time, game.date, game.venue);"><br>
-        <app-payment [time]="game.time" [date]="game.date" [venue]="game.venue"></app-payment>
-        <p>{{checkIfPaid(game.teamMember, game.paidAmount)}}</p>
-      </li>
-    </div><br>
-
-
-  </div>
+  </div><br>
+  
+  <h3>Past Games:</h3>
+  <div *ngFor="let game of games | async">
+    <li *ngIf="checkIfOldGame(game.date)">
+      {{game.date}} {{game.time}} at {{game.venue}}
+      <input type="button" class="btn btn-primary" value="Delete"
+        (click)="deleteGame(game.time, game.date, game.venue);"><br>
+      <app-payment [time]="game.time" [date]="game.date" [venue]="game.venue"></app-payment>
+    </li>
+  </div><br>
+  
+</div>
 
 
 
