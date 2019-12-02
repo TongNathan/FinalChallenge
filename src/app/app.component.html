@@ -21,11 +21,11 @@
     <input type="button" value="Logout" (click)="logout();"><br><br>
 
     <div class="postForm">
-      <label for="time">Insert Time:</label><br>
+      <label for="time">Time:</label><br>
       <input type="time" class="form-control" id="time" name="time" [(ngModel)]="timeValue"><br><br>
-      <label for="date">Insert Date:</label><br>
+      <label for="date">Date:</label><br>
       <input type="date" class="form-control" id="date" name="date" [(ngModel)]="dateValue"><br><br>
-      <label for="venue">Insert Venue:</label><br>
+      <label for="venue">Venue:</label><br>
       <input type="text" class="form-control" id="venue" name="venue" placeholder="Enter a Venue" [(ngModel)]="venueValue"><br><br>
   
       <input type="button" value="Submit Game" (click)="createGame();">
@@ -33,7 +33,7 @@
 
     <h3>Current/Upcoming Games:</h3>
     <div *ngFor="let game of games | async">
-      <div *ngIf="checkIfNewGame(game.date)">
+      <div *ngIf="NewGame(game.date)">
         {{game.date}} {{game.time}} at {{game.venue}}
         <input type="button" class="btn btn-primary" value="Delete"
           (click)="deleteGame(game.time, game.date, game.venue);"><br>
@@ -43,7 +43,7 @@
 
     <h3>Past Games:</h3>
     <div *ngFor="let game of games | async">
-      <div *ngIf="checkIfOldGame(game.date)">
+      <div *ngIf="OldGame(game.date)">
         {{game.date}} {{game.time}} at {{game.venue}}
         <input type="button" class="btn btn-primary" value="Delete"
           (click)="deleteGame(game.time, game.date, game.venue);"><br>

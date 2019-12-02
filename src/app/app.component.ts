@@ -52,7 +52,7 @@ export class AppComponent {
     this.authService.SignOut()
   }
 
-  checkIfNewGame(date) {
+  NewGame(date) {
     date = date.replace('-', '');
     date = date.replace('-', '');
 
@@ -67,7 +67,7 @@ export class AppComponent {
     }
   }
 
-  checkIfOldGame(date) {
+  OldGame(date) {
     date = date.replace('-', '');
     date = date.replace('-', '');
 
