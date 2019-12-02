@@ -19,6 +19,7 @@ export class AppComponent {
   currentDate = new Date();
   teamMemberValue: string = '';
 
+
   public timeValue;
   public dateValue;
   public venueValue;
@@ -80,6 +81,8 @@ export class AppComponent {
       return false;
     }
   }
+
+  
 
   checkIfLoggedIn() {
     const user = JSON.parse(localStorage.getItem('user'));
