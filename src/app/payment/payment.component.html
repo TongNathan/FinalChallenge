@@ -1,0 +1,11 @@
+-------------------------------------------
+<br>
+{{game.date}}, {{game.time}} at {{game.venue}}
+<br><br>
+<input type="text" id="teammember" name="teammember" placeholder="Enter Name" [(ngModel)]="teamMemberValue">
+<br><br>
+<input type="number" id="payment" name="payment" placeholder="$0" [(ngModel)]="paymentValue" style="width: 50px">
+<input type="button" class="btn btn-primary" value="Edit" (click)="enterPayment(game.time, game.date, game.venue);">
+<input type="button" class="btn btn-primary" value="Delete" (click)="deleteGame(game.time, game.date, game.venue);">
+<br>
+-------------------------------------------
